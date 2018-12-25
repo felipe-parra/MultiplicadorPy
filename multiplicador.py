@@ -94,7 +94,7 @@ def main():
     cleaning()
     decorador()
     decorador()
-    print(decorador_resultado())
+    decorador_resultado()
     print("\t\t" + ahora_fecha())
     decorador()
     print('\tBillete\t\tCantidad\tImporte')
