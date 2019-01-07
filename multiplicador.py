@@ -4,6 +4,7 @@
 import time
 import os
 import sys
+import sqlite3
 
 def ahora_fecha():
     fecha = time.strftime("%Y-%m-%dT%X %Z")
@@ -109,6 +110,7 @@ def main():
     print('********\tSuma Total:\t$\t{:,}\t\t\t\t********'.format(suma))
     decorador()
     escribiendo_en_archivo('resultados.txt',ahora_fecha(),cantidades,multiplicados,suma)
+    guardando_en_bd(ahora_fecha()[0:19],cantidades[0],cantidades[1],cantidades[2],cantidades[3],cantidades[4],cantidades[5], suma,)
 
 
 def escribiendo_en_archivo(nombre_archivo,fecha,cantidades,importes,total):
@@ -120,6 +122,12 @@ def escribiendo_en_archivo(nombre_archivo,fecha,cantidades,importes,total):
     fichero_csv.write('\n')
     fichero_csv.close()
 
+def guardando_en_bd(fecha,b1,b2,b3,b4,b5,b6,im):
+    conn = sqlite3.connect('resultados.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO operaciones VALUES(?,?,?,?,?,?,?,?)",(fecha,b1,b2,b3,b4,b5,b6,im))
+    conn.commit()
+    conn.close()
 
 if __name__ == '__main__':
     main()
