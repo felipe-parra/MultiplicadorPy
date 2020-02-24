@@ -134,6 +134,9 @@ if __name__ == '__main__':
     while True:
         selection_command = input("Quieres realizar otra operacion? y/n\t")
         if selection_command == '' or selection_command.lower() == 'n' or selection_command.upper() == 'no':
+            decorador()
+            print('Gracias por utilizar la herramienta Multiply')
+            decorador()
             break
         else:
             cleaning()
